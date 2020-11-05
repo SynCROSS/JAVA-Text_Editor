@@ -108,8 +108,6 @@ public class WinNER extends JFrame implements ActionListener {
 				while ((pos = text.toUpperCase().indexOf(word.toUpperCase(), pos)) >= 0) {
 					hl.addHighlight(pos, pos + word.length(), hlp);
 					pos += word.length();
-//					findCnt++;
-//					System.out.println(findCnt);
 				}
 			}
 		} catch (Exception e1) {
@@ -122,11 +120,6 @@ public class WinNER extends JFrame implements ActionListener {
 		try {
 			Highlighter hl = tc.getHighlighter();
 			hl.removeAllHighlights();
-//			Highlighter.Highlight[] hilights = hl.getHighlights();
-			/*
-			 * for (int i = 0; i < hilights.length; i++) { if (hilights[i].getPainter()
-			 * instanceof HighLightPainter) { hl.removeHighlight(hl); } }
-			 */
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -140,7 +133,6 @@ public class WinNER extends JFrame implements ActionListener {
 		jp2.add(jb);
 		jb.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				JTextComponent tc = new JTextComponent();
 				String str7 = e.getActionCommand();
 				if (str7.equals("찾기")) {
 					highlighter(ta, tf.getText());
@@ -170,7 +162,6 @@ public class WinNER extends JFrame implements ActionListener {
 		jp4.add(jb2);
 		jb.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				JTextComponent tc = new JTextComponent();
 				String str7 = e.getActionCommand();
 				if (str7.equals("찾기")) {
 					highlighter(ta, tf.getText());
@@ -192,11 +183,6 @@ public class WinNER extends JFrame implements ActionListener {
 						index = pos + findW.length();
 					} else {
 						index = pos + findW.length();
-//					// ta.replaceSelection(tf2.getText());
-//					ta.setText(ta.getText().toLowerCase().replace(tf.getText(), tf2.getText()));
-//					ta.setText(ta.getText().toUpperCase().replaceAll(tf.getText().toUpperCase(), tf2.getText()));
-//					ta.replaceRange(replaceW, pos, index);
-//					ta.replaceRange(replaceW, pos, index);
 						ta.setText(str8.toLowerCase().replaceFirst(tf.getText(), replaceW));
 					}
 				}
@@ -255,13 +241,12 @@ public class WinNER extends JFrame implements ActionListener {
 		ta.setLineWrap(true);
 		jf.setDefaultCloseOperation(EXIT_ON_CLOSE); // x버튼 클릭 시 프로그램 종료
 		cp.setLayout(new FlowLayout());
-//		cp.setBackground(Color.WHITE); // 흰색으로 배경 설정
 		JScrollPane sp = new JScrollPane(ta, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		cp.add(sp);
 
 		createMenu();
-		jf.setSize(800, 490); // 프레임 크기 800x540 설정
+		jf.setSize(800, 490); // 프레임 크기 800x490 설정
 		jf.setResizable(false);
 		jf.setVisible(true); // 화면에 프레임 출력
 	}
@@ -318,7 +303,6 @@ public class WinNER extends JFrame implements ActionListener {
 		replaceword.setAccelerator(KeyStroke.getKeyStroke((char) KeyEvent.VK_R, (char) KeyEvent.VK_ALT));
 		replaceword.addActionListener(new ActionListener() {
 			public void actionPerformed(KeyEvent e) {
-//				System.out.println("replace");
 				ReplaceWord();
 			}
 
@@ -370,17 +354,11 @@ public class WinNER extends JFrame implements ActionListener {
 		jf.setJMenuBar(menu);
 	}
 
-	/*
-	 * public void actionPerformed(KeyEvent e) { switch(e.getKeyCode()) { case
-	 * KeyEvent.VK_F: if(e.isControlDown()) { FindWord(); } } }
-	 */
-
 	public void actionPerformed(ActionEvent e) {
 		FileDialog saveF = new FileDialog(this, "다른 이름으로 파일 저장", FileDialog.SAVE);
 		FileDialog openF = new FileDialog(this, "파일 열기", FileDialog.LOAD);
 
 		String str = e.getActionCommand();
-//		System.out.println(str);
 		if (str.equals("새 파일")) {
 			ta.setText(blank);
 			jf.setTitle("WinNER");
@@ -393,19 +371,7 @@ public class WinNER extends JFrame implements ActionListener {
 				char str2;
 				File file = new File(data);
 				FileInputStream fileIO = new FileInputStream(file);
-//				InputStreamReader inputRead = new InputStreamReader(fileIO,"UTF-8");
 				BufferedReader br = new BufferedReader(new FileReader(data));
-//				BufferedReader br = new BufferedReader(inputRead);
-
-				/*
-				 * while ((str1 = br.readLine()) != null) { str1 = str1 + "\r\n" + str2; //
-				 * ta.append(str); // ta.append("\r\n"); }
-				 */
-				/*
-				 * double fileSize = (double) file.length(); byte byteArr[] = new byte[(int)
-				 * fileSize]; while(fileIO.read(byteArr)!=-1) { for (int i = 0; i <
-				 * fileIO.read(byteArr); i++) { str1+=(char)byteArr[i]; } }
-				 */
 
 				for (int i = 0; i < (int) file.length(); i++) {
 					str2 = (char) fileIO.read();
@@ -455,10 +421,6 @@ public class WinNER extends JFrame implements ActionListener {
 			SimpleDateFormat dateANDtime = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss a");
 			ta.append("Date: " + dateANDtime.format(today));
 		} else if (str.equals("글꼴")) {
-//			FontDialogClass fontDial = new FontDialogClass();
-
-//			text22 = new JTextField("this is a sentece", 20);
-//			ta.setFont(new Font("Serif", Font.PLAIN, 14));
 			sizeType.setFont(new Font("Serif", Font.PLAIN, 18));
 
 			jp3.setLayout(new FlowLayout());
@@ -483,26 +445,17 @@ public class WinNER extends JFrame implements ActionListener {
 
 		} else if (str.equals("커맨드")) {
 			Process ps = null;
-//			String str4 = "";
 			try {
 				ps = new ProcessBuilder("cmd.exe", "/C", "start").start();
-
-				/*
-				 * BufferedReader stdOut = new BufferedReader(new
-				 * InputStreamReader(ps.getInputStream()));
-				 * 
-				 * while ((str4 = stdOut.readLine()) != null) { System.out.println(str4); }
-				 */
-
 			} catch (Exception e1) { // TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
 
-		else if (str.equals("github link")) {
+		else if (str.equals("Github Link")) {
 			URI uri;
 			try {
-				uri = new URI("https://github.com/yuto3125");
+				uri = new URI("https://github.com/SynCROSS");
 				Desktop.getDesktop().browse(uri);
 			} catch (Exception e1) {
 				e1.printStackTrace();
