@@ -1,2 +1,2 @@
 # PROJECT_JAVA
-JAVA PROJECT
+Java Text Editor with Swing
